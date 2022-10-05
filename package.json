@@ -1,6 +1,6 @@
 {
   "name": "@ahmedkhaled1444/rate-limiter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": " Simple rate-limiter NPM Module used for blocking IPs that exceeds certain number of requests per second in a specific time frame.",
   "main": "index.js",
   "type": "module",
@@ -20,6 +20,7 @@
     "type": "git",
     "url": "https://github.com/AhmedKhaled590/rate-limiter"
   },
+  "readme": "README.md",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.20",
