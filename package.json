@@ -1,7 +1,7 @@
 {
   "name": "rate-limiter",
   "version": "1.0.0",
-  "description": "",
+  "description": " Simple rate-limiter NPM Module used for blocking IPs that exceeds certain number of requests per second in a specific time frame.",
   "main": "index.js",
   "type": "module",
   "scripts": {
