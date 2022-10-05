@@ -1,9 +1,9 @@
-import IPcache from "node-cache";
+const IPcache = require("node-cache");
 
 const TIME_LIMIT = 10;
 const MAX_REQUESTS_PER_SECOND = 100;
 
-export const rateLimit = (
+const rateLimit = (
   options = {
     timeLimit: TIME_LIMIT,
     maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
@@ -86,3 +86,5 @@ const getIp = (req) => {
 const checkIfIPV6 = (ip) => {
   return ip.includes(":");
 };
+
+module.exports = rateLimit;
