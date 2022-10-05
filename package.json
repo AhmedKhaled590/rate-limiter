@@ -1,0 +1,20 @@
+{
+  "name": "rate-limiter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "express": "^4.18.1"
+  },
+  "dependencies": {
+    "node-cache": "^5.1.2"
+  }
+}
