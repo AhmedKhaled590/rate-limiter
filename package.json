@@ -1,14 +1,25 @@
 {
-  "name": "rate-limiter",
-  "version": "1.0.0",
+  "name": "@ahmedkhaled1444/rate-limiter",
+  "version": "1.0.2",
   "description": " Simple rate-limiter NPM Module used for blocking IPs that exceeds certain number of requests per second in a specific time frame.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "rate-limiter",
+    "rate",
+    "limiter",
+    "block",
+    "ip",
+    "block-ip"
+  ],
+  "author": "Ahmed Khaled",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AhmedKhaled590/rate-limiter"
+  },
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.20",
