@@ -1,12 +1,14 @@
 const IPcache = require("node-cache");
 
-const TIME_LIMIT = 10;
-const MAX_REQUESTS_PER_SECOND = 100;
+const TIME_LIMIT = 60; // 1 Minute
+const MAX_REQUESTS_PER_SECOND = 5;
+const MAX_REQUESTS_PER_FRAME = 100;
 
 const rateLimit = (
   options = {
     timeLimit: TIME_LIMIT,
     maxRequestsPerSecond: MAX_REQUESTS_PER_SECOND,
+    maxRequestsPerFrame: MAX_REQUESTS_PER_FRAME,
   }
 ) => {
   const cache = new IPcache({
@@ -42,15 +44,46 @@ const rateLimit = (
     // Get the cache for the IP address
     const ipCache = cache.get(ip);
     console.log(`IP: ${ip} - Requests: ${ipCache.length}`);
+    if (ipCache.length > options.maxRequestsPerFrame) {
+      res.header({
+        "X-RateLimit-Limit": options.maxRequestsPerSecond,
+        "X-RateLimit-Remaining": 0,
+        "X-RateLimit-Reset": Math.ceil(
+          (options.timeLimit * 1000 -
+            (ipCache[ipCache.length - 1] - ipCache[0])) /
+            1000
+        ),
+      });
+      return res.status(429).send("Too many requests");
+    }
     // Check if the IP address has exceeded the limit
-    if (ipCache.length > 1) {
+    if (ipCache.length > 3) {
       const timeDiff = ipCache[ipCache.length - 1] - ipCache[0];
       const rps = ipCache.length / (timeDiff / 1000);
       console.log(`IP: ${ip} RPS: ${rps}`);
       if (rps > options.maxRequestsPerSecond) {
-        return res.status(429).send("Too many requests");
+        res.header({
+          "X-RateLimit-Limit": options.maxRequestsPerSecond,
+          "X-RateLimit-Remaining": 0,
+          "X-RateLimit-Reset": Math.ceil(
+            (options.timeLimit * 1000 -
+              (ipCache[ipCache.length - 1] - ipCache[0])) /
+              1000
+          ),
+        });
+        return res.status(429).send("Too Many Requests");
       }
     }
+
+    res.header({
+      "X-RateLimit-Limit": options.maxRequestsPerSecond,
+      "X-RateLimit-Remaining": options.maxRequestsPerSecond - ipCache.length,
+      "X-RateLimit-Reset": Math.ceil(
+        (options.timeLimit * 1000 -
+          (ipCache[ipCache.length - 1] - ipCache[0])) /
+          1000
+      ),
+    });
     next();
   };
 };
