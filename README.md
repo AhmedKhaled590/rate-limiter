@@ -13,9 +13,55 @@
 ```js
 const rateLimiter = require("@ahmedkhaled1444/rate-limiter");
 app.use(
-  rateLimiter({
-    timeLimit: 10, // Time frame in seconds to check for requests
-    maxRequestsPerSecond: 1, // Maximum number of requests per second
+  rateLimit({
+    timeLimit: 60,
+    maxRequestsPerSecond: 70,
+    maxRequestsPerFrame: 1000,
+    statusCode: 429,
+    message: "Too many requests, please try again later",
+    responseHeaders: true,
   })
 );
 ```
+
+## Options
+
+### timeLimit
+
+- Type: `Number`
+- Default: `60`
+- Description: The time frame in seconds to check the number of requests.
+
+### maxRequestsPerSecond
+
+- Type: `Number`
+- Default: `5`
+- Description: The maximum number of requests per second.
+
+### maxRequestsPerFrame
+
+- Type: `Number`
+- Default: `100`
+- Description: The maximum number of requests per time frame.
+
+### statusCode
+
+- Type: `Number`
+- Default: `429`
+- Description: The status code to send when the request is blocked.
+
+### message
+
+- Type: `String`
+- Default: `Too many requests.`
+- Description: The message to send when the request is blocked.
+
+### responseHeaders
+
+- Type: `Boolean`
+- Default: `true`
+- Description: If set to true, the response will contain the following headers:
+  - `X-RateLimit-Limit`: The maximum number of requests per time frame.
+  - `X-RateLimit-Remaining`: The remaining number of requests per time frame.
+  - `X-RateLimit-Reset`: The time frame in seconds.
+    If set to false, the response will not contain any of the above headers.
