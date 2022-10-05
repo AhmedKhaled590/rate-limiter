@@ -11,11 +11,11 @@
 ## How it works
 
 ```js
-    const rateLimiter = require("@ahmedkhaled1444/rate-limiter");
-    app.use(
-    rateLimiter({
-        timeLimit: 10, // Time frame in seconds to check for requests
-        maxRequestsPerSecond: 1, // Maximum number of requests per second
-    });
-    );
+const rateLimiter = require("@ahmedkhaled1444/rate-limiter");
+app.use(
+  rateLimiter({
+    timeLimit: 10, // Time frame in seconds to check for requests
+    maxRequestsPerSecond: 1, // Maximum number of requests per second
+  })
+);
 ```
