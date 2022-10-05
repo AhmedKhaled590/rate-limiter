@@ -64,4 +64,4 @@ app.use(
   - `X-RateLimit-Limit`: The maximum number of requests per time frame.
   - `X-RateLimit-Remaining`: The remaining number of requests per time frame.
   - `X-RateLimit-Reset`: The time frame in seconds.
-    If set to false, the response will not contain any of the above headers.
+  - If set to false, the response will not contain any of the above headers.
