@@ -2,6 +2,8 @@
 
 ### Simple rate-limiter NPM Module used for blocking IPs that exceeds certain number of requests per second in a specific time frame.
 
+### https://www.npmjs.com/package/@ahmedkhaled1444/rate-limiter
+
 ## Installation
 
 ```
@@ -31,18 +33,21 @@ app.use(
 - Type: `Number`
 - Default: `60`
 - Description: The time frame in seconds to check the number of requests.
+- Set to `0` to disable the rate limiter.
 
 ### maxRequestsPerSecond
 
 - Type: `Number`
 - Default: `5`
 - Description: The maximum number of requests per second.
+- Set to `0` to disable the rate limiter.
 
 ### maxRequestsPerFrame
 
 - Type: `Number`
 - Default: `100`
 - Description: The maximum number of requests per time frame.
+- Set to `0` to disable the rate limiter.
 
 ### statusCode
 
@@ -64,4 +69,4 @@ app.use(
   - `X-RateLimit-Limit`: The maximum number of requests per time frame.
   - `X-RateLimit-Remaining`: The remaining number of requests per time frame.
   - `X-RateLimit-Reset`: The time frame in seconds.
-  - If set to false, the response will not contain any of the above headers.
+- If set to false, the response will not contain any of the above headers.
