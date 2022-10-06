@@ -34,10 +34,12 @@ const rateLimit = (
     }
 
     // Create a new cache for the IP address
-    updateCache(cache, ip, options.timeLimit);
+    cache.update(ip, Date.now());
 
     // Get the cache for the IP address
-    const ipCache = cache.get(ip);
+    const ipCache = cache.getValues(ip);
+
+    console.log(`IP: ${ip} - Cache: ${ipCache.length}`);
 
     if (ipCache.length > options.maxRequestsPerFrame) {
       options.responseHeaders &&
@@ -83,12 +85,6 @@ const rateLimit = (
       });
     next();
   };
-};
-
-const updateCache = (cache, ip, timeLimit) => {
-  let ipCache = cache.get(ip) || [];
-  ipCache.push(Date.now());
-  cache.set(ip, ipCache, timeLimit - Date.now());
 };
 
 module.exports = rateLimit;

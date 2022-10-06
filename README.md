@@ -1,6 +1,6 @@
 # API Rate Limiter
 
-### Simple rate-limiter NPM Module used for blocking IPs that exceeds certain number of requests per second in a specific time frame.
+### Zero-Dependencies Simple rate-limiter NPM Module used for blocking IPs that exceeds certain number of requests per second in a specific time frame.
 
 ### https://www.npmjs.com/package/@ahmedkhaled1444/rate-limiter
 
